@@ -1,0 +1,119 @@
+# 1. RD1 with TCP Flags
+# Rule 1: Accept TCP traffic on port 80 with SYN flag
+-A INPUT -p tcp --dport 80 --tcp-flags SYN SYN -j ACCEPT
+# Rule 2: Accept TCP traffic on port 80 with SYN flag
+-A INPUT -p tcp --dport 80 --tcp-flags SYN SYN -j ACCEPT  # RD1
+
+# 2. RD1 with Owner Module
+# Rule 3: Accept traffic from UID 1000
+-A OUTPUT -m owner --uid-owner 1000 -j ACCEPT
+# Rule 4: Accept traffic from UID 1000
+-A OUTPUT -m owner --uid-owner 1000 -j ACCEPT  # RD1
+
+# 3. RD1 with State Module
+# Rule 5: Accept NEW TCP connections on port 22
+-A INPUT -p tcp --dport 22 -m state --state NEW -j ACCEPT
+# Rule 6: Accept NEW TCP connections on port 22
+-A INPUT -p tcp --dport 22 -m state --state NEW -j ACCEPT  # RD1
+
+# 4. RD1 with MAC Address
+# Rule 7: Accept traffic from MAC 00:11:22:33:44:55
+-A INPUT -m mac --mac-source 00:11:22:33:44:55 -j ACCEPT
+# Rule 8: Accept traffic from MAC 00:11:22:33:44:55
+-A INPUT -m mac --mac-source 00:11:22:33:44:55 -j ACCEPT  # RD1
+
+# 5. RD1 with Limit Module
+# Rule 9: Accept ICMP echo-requests with rate limit
+-A INPUT -p icmp --icmp-type echo-request -m limit --limit 1/s -j ACCEPT
+# Rule 10: Accept ICMP echo-requests with rate limit
+-A INPUT -p icmp --icmp-type echo-request -m limit --limit 1/s -j ACCEPT  # RD1
+
+# 6. RD1 with Inbound Interface
+# Rule 11: Accept all traffic on eth0
+-A INPUT -i eth0 -j ACCEPT
+# Rule 12: Accept all traffic on eth0
+-A INPUT -i eth0 -j ACCEPT  # RD1
+
+# 7. RD1 with Time Module
+# Rule 13: Accept traffic during working hours
+-A INPUT -m time --timestart 09:00 --timestop 17:00 -j ACCEPT
+# Rule 14: Accept traffic during working hours
+-A INPUT -m time --timestart 09:00 --timestop 17:00 -j ACCEPT  # RD1
+
+# 8. RD1 with IP Range Module
+# Rule 15: Accept traffic from IP range 10.0.0.1-10.0.0.10
+-A INPUT -m iprange --src-range 10.0.0.1-10.0.0.10 -j ACCEPT
+# Rule 16: Accept traffic from IP range 10.0.0.1-10.0.0.10
+-A INPUT -m iprange --src-range 10.0.0.1-10.0.0.10 -j ACCEPT  # RD1
+
+# 9. RD1 with Protocol
+# Rule 17: Accept UDP traffic on port 53
+-A INPUT -p udp --dport 53 -j ACCEPT
+# Rule 18: Accept UDP traffic on port 53
+-A INPUT -p udp --dport 53 -j ACCEPT  # RD1
+
+# 10. RD1 with Mark Module
+# Rule 19: Accept marked packets
+-A INPUT -m mark --mark 1 -j ACCEPT
+# Rule 20: Accept marked packets
+-A INPUT -m mark --mark 1 -j ACCEPT  # RD1
+
+# 11. RD1 with Multiport Module
+# Rule 21: Accept TCP traffic on ports 8080,8081,8082
+-A INPUT -p tcp -m multiport --dports 8080,8081,8082 -j ACCEPT
+# Rule 22: Accept TCP traffic on ports 8080,8081,8082
+-A INPUT -p tcp -m multiport --dports 8080,8081,8082 -j ACCEPT  # RD1
+
+# 12. RD1 with String Module
+# Rule 23: Accept packets containing "hello"
+-A INPUT -m string --string "hello" --algo bm -j ACCEPT
+# Rule 24: Accept packets containing "hello"
+-A INPUT -m string --string "hello" --algo bm -j ACCEPT  # RD1
+
+# 13. RD1 with Length Module
+# Rule 25: Accept packets of length less than 500 bytes
+-A INPUT -m length --length 0:499 -j ACCEPT
+# Rule 26: Accept packets of length less than 500 bytes
+-A INPUT -m length --length 0:499 -j ACCEPT  # RD1
+
+# 14. RD1 with IP Protocol
+# Rule 27: Accept GRE protocol traffic
+-A INPUT -p gre -j ACCEPT
+# Rule 28: Accept GRE protocol traffic
+-A INPUT -p gre -j ACCEPT  # RD1
+
+# 15. RD1 with TCP Option Module
+# Rule 29: Accept TCP packets with option 2
+-A INPUT -p tcp -m tcp --tcp-option 2 -j ACCEPT
+# Rule 30: Accept TCP packets with option 2
+-A INPUT -p tcp -m tcp --tcp-option 2 -j ACCEPT  # RD1
+
+# 16. RD1 with Fragment Module
+# Rule 31: Accept fragmented packets
+-A INPUT -f -j ACCEPT
+# Rule 32: Accept fragmented packets
+-A INPUT -f -j ACCEPT  # RD1
+
+# 17. RD1 with DSCP
+# Rule 33: Accept packets with DSCP value 26
+-A INPUT -m dscp --dscp 26 -j ACCEPT
+# Rule 34: Accept packets with DSCP value 26
+-A INPUT -m dscp --dscp 26 -j ACCEPT  # RD1
+
+# 18. RD1 with Comment Module
+# Rule 35: Accept traffic with comment "Allow SSH"
+-A INPUT -p tcp --dport 22 -m comment --comment "Allow SSH" -j ACCEPT
+# Rule 36: Accept traffic with comment "Allow SSH"
+-A INPUT -p tcp --dport 22 -m comment --comment "Allow SSH" -j ACCEPT  # RD1
+
+# 19. RD1 with Complex Combination
+# Rule 37: Accept TCP traffic from 192.168.1.0/24 on ports 80,443
+-A INPUT -p tcp -s 192.168.1.0/24 -m multiport --dports 80,443 -j ACCEPT
+# Rule 38: Accept TCP traffic from 192.168.1.0/24 on ports 80,443
+-A INPUT -p tcp -s 192.168.1.0/24 -m multiport --dports 80,443 -j ACCEPT  # RD1
+
+# 20. RD1 with Negation (Not Supported, but included)
+# Rule 39: Accept traffic not from 10.0.0.1
+-A INPUT ! -s 10.0.0.1 -j ACCEPT
+# Rule 40: Accept traffic not from 10.0.0.1
+-A INPUT ! -s 10.0.0.1 -j ACCEPT  # RD1

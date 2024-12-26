@@ -1,0 +1,16 @@
+-P INPUT ACCEPT
+-A INPUT -p tcp -s 140.192.37.20/32 --dport 80 -j DROP
+-A INPUT -p tcp -s 140.192.37.0/24 --dport 80 -j ACCEPT
+-A INPUT -p tcp -s 0.0.0.0/0 -d 161.120.33.40 --dport 80 -j ACCEPT
+-A INPUT -p tcp -s 140.192.37.0/24 -d 161.120.33.40 --dport 80 -j DROP
+-A INPUT -p tcp -s 140.192.37.30/32 --dport 21 -j DROP
+-A OUTPUT -p tcp -s 140.192.37.0/24 --dport 21 -j ACCEPT
+-A INPUT -p tcp -s 140.192.37.0/24 -d 161.120.33.40 --dport 21 -j ACCEPT
+-A INPUT -p udp -s 140.192.37.0/24 -d 161.120.33.40 --dport 53 -j ACCEPT
+-A OUTPUT -p udp -s 0.0.0.0/0 -d 161.120.33.40 --dport 53 -j ACCEPT
+-A INPUT -p udp -s 140.192.38.0/24 -d 161.120.35.0/24 -j ACCEPT
+-A INPUT -j DROP
+-A INPUT -p tcp -s 192.168.1.0/24 --dport 77000 -j ACCEPT
+-A INPUT -p tcp -s 192.368.1.0/24 --dport 22 -j ACCEPT
+bl bl
+-A INPUT -m state --state NEW -j ACCEPT

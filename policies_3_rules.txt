@@ -1,0 +1,85 @@
+-P INPUT ACCEPT
+-A INPUT -p udplite -j ACCEPT
+-A INPUT -p tcp -j ACCEPT
+-A INPUT -p udplite -j DECLINES
+-A INPUT -p icmp -j DROP --icmp-type 5
+-A INPUT -p udp -s 117.186.185.100/32 -d 117.186.185.0/24 --dport 3784 -j ACCEPT
+-A INPUT -p udp -s 117.186.185.0/24 -d 117.186.185.0/24 --dport 3784 -j ACCEPT
+-A INPUT -p udp -s 117.186.185.0/24 -d 117.186.185.0/24 --dport 3785 -j ACCEPT
+-A INPUT -p tcp -s 11.36.216.170/32 -d 11.36.216.169/32 --dport 179 -j ACCEPT
+-A INPUT -p tcp -s 11.36.216.176/32 -d 11.36.216.179/32 --dport 179 -j ACCEPT
+-A INPUT -p tcp -s 204.150.33.175/32 -d 204.150.33.83/32 --dport 179 -j ACCEPT
+-A INPUT -p tcp -s 205.248.59.64/32 -d 205.248.59.67/32 --dport 179 -j ACCEPT
+-A INPUT -p tcp -s 205.248.58.190/32 -d 205.248.58.188/32 --dport 179 -j ACCEPT
+-A INPUT -p udp -s 10.10.10.42/32 -d 218.8.104.58/32 --dport 53 -j DROP
+-A INPUT -p udp -s 10.10.10.0/24 -d 218.8.104.58/32 --dport 53 -j ACCEPT
+-A INPUT -p all -s 54.0.0.0/8 -j DROP
+-A INPUT -p all -s 163.157.0.0/16 -j DROP
+-A INPUT -p all -s 166.144.0.0/12 -j DROP
+-A INPUT -p all -s 198.170.50.0/24 -j DROP
+-A INPUT -p all -s 198.120.0.0/16 -j DROP
+-A INPUT -p all -s 11.36.192.0/19 -j DROP
+-A INPUT -p all -s 11.125.64.0/19 -j DROP
+-A INPUT -p all -s 166.146.58.184/32 -j ACCEPT
+-A INPUT -p all -s 218.66.57.0/24 -j DROP
+-A INPUT -p all -s 218.66.56.0/24 -j DROP
+-A INPUT -p all -s 218.67.71.0/24 -j DROP
+-A INPUT -p all -s 218.67.72.0/24 -j DROP
+-A INPUT -p all -s 218.67.96.0/22 -j DROP
+-A INPUT -p all -s 8.89.120.0/22 -j DROP
+-A INPUT -p all -s 54.203.159.1/32 -j DROP
+-A INPUT -p all -s 218.8.104.0/25 -j ACCEPT
+-A INPUT -p all -s 218.8.104.128/25 -j ACCEPT
+-A INPUT -p all -s 218.8.103.0/24 -j ACCEPT
+-A INPUT -p all -s 144.49.45.40/32 -j DROP
+-A INPUT -p all -s 163.255.18.63/32 -j DROP
+-A INPUT -p all -s 202.45.130.141/32 -j DROP
+-A INPUT -p all -s 212.26.132.18/32 -j DROP
+-A INPUT -p all -s 218.111.16.132/32 -j DROP
+-A INPUT -p all -s 218.246.165.90/32 -j DROP
+-A INPUT -p all -s 29.228.179.210/32 -j DROP
+-A INPUT -p all -s 194.181.135.214/32 -j DROP
+-A INPUT -p all -s 10.64.90.249/32 -j DROP
+-A INPUT -p all -s 207.70.46.217/32 -j DROP
+-A INPUT -p all -s 219.185.241.117/32 -j DROP
+-A INPUT -p all -s 2.80.3.219/32 -j DROP
+-A INPUT -p all -s 27.212.145.150/32 -j DROP
+-A INPUT -p all -s 131.159.53.215/32 -j DROP
+-A INPUT -p all -s 214.220.213.107/32 -j DROP
+-A INPUT -p all -s 196.64.84.239/32 -j DROP
+-A INPUT -p all -s 28.69.250.136/32 -j DROP
+-A INPUT -p all -s 200.45.87.238/32 -j DROP
+-A INPUT -p all -s 11.125.89.32/30 -j DROP
+-A INPUT -p all -s 11.125.89.36/30 -j DROP
+-A INPUT -p all -s 11.125.89.40/30 -j DROP
+-A INPUT -p all -s 11.125.89.44/30 -j DROP
+-A INPUT -p icmp -j ACCEPT
+-A OUTPUT -p icmp -j ACCEPT
+-A OUTPUT -p icmp -j DROP
+-A INPUT -p all -s 11.36.199.216/30 -j DROP
+-A INPUT -p all -s 11.36.199.36/30 -j DROP
+-A INPUT -p all -s 11.36.199.2/30 -j DROP
+-A INPUT -p all -s 11.36.199.52/30 -j DROP
+-A OUTPUT -p all -s 11.36.199.20/30 -j DROP
+-A OUTPT -p all -s 11.36.199.20/30 -j DROP
+-A INPUT -p all -s 11.125.82.216/30 -j DROP
+-A INPUT -p all -s 11.125.82.220/32 -j DROP
+-A INPUT -p all -s 11.125.82.36/30 -j DROP
+-A INPUT -p all -s 11.125.82.12/30 -j DROP
+-A INPUT -p all -s 11.125.80.136/30 -j DROP
+-A INPUT -p all -s 11.125.80.141/32 -j DROP
+-A INPUT -p all -s 11.125.87.48/30 -j DROP
+-A INPUT -p all -s 11.125.87.168/30 -j DROP
+-A INPUT -p all -s 11.125.87.173/32 -j DROP
+-A INPUT -p all -s 11.125.90.56/30 -j DROP
+-A INPUT -p all -s 11.125.90.240/30 -j DROP
+-A INPUT -p all -s 
+-A INPUT -p tcp -s 192.168.1.0/24 -i eth0 -j ACCEPT
+-A INPUT -p tcp -s 192.168.1.5/32 -i eth0 -j ACCEPT
+-A INPUT -p tcp -m mac --mac-source 00:11:22:33:44:55 -s 192.168.1.0/24 -j ACCEPT
+-A INPUT -p udp -m owner --uid-owner 1001 -s 117.186.185.0/24 --dport 3784 -j ACCEPT
+-A INPUT -p tcp -s 11.36.216.176/32 -d 11.36.216.179/32 --dport 179 --tcp-flags SYN,ACK SYN -j ACCEPT
+-A INPUT -j DROP
+-A INPUT -p tcp --dport 22 -j DROP
+
+
